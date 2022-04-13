@@ -7,6 +7,7 @@ from PIL import Image,ImageTk
 class Application:
 
     def __init__(self):
+        """Initial Variables"""
         self.FileURL = ""
         self.title = "Untitled"
         self.Height = 0
@@ -19,6 +20,7 @@ class Application:
         pass
 
     def User_Interface(self,*args):
+        """the method from which the user interface will open"""
         self.root=Tk()
         self.root.title(self.title)
         self.root.columnconfigure(0,weight=1)
@@ -76,6 +78,7 @@ class Application:
         pass
 
     def Import_Image_FUNC(self,*args):
+        """To Open and load image in Application"""
         fileurl = filedialog.askopenfilename(title="Open Image",filetypes=[("JPG","*.jpg"),("PNG","*.png"),("JPEG","*.jpeg")])
         if fileurl:
             self.FileURL = fileurl
@@ -92,6 +95,7 @@ class Application:
         pass
 
     def Change_Size_Scroll_FUNC(self,e):
+        """Change the Image size with MouseWheel"""
         if self.FileURL:
             data = e.delta
             
@@ -136,6 +140,7 @@ class Application:
                 self.E2_Value.set(self.Width)
 
     def Custom_Window_FUNC(self,*args):
+        """Change the Height and width"""
         if self.FileURL:
             self.Custom_Window = Toplevel()
             self.Custom_Window.resizable(0,0)
@@ -191,6 +196,7 @@ class Application:
             messagebox.showwarning("Warning","The Image cannot be shrinked more than 100X100")
 
     def FullScreen_FUNC(self,*args):
+        """The method for the fullscreen"""
         if self.FullScreen==True:
             self.FullScreen=False
             self.root.wm_attributes("-fullscreen",False)
@@ -199,6 +205,7 @@ class Application:
             self.root.wm_attributes("-fullscreen",True)
 
     def Reset_FUNC(self,*args):
+        """Reset the Application"""
         if self.FileURL:
             ask = messagebox.askquestion("Reset","Do you really want to Reset")
             if ask=="yes":
@@ -216,6 +223,7 @@ class Application:
                 self.StatusBar.config(text="Welcome to Image Resizer")
 
     def Export_Image_FUNC(self,*args):
+        """Save the Resized Image method"""
         if self.Export_img:
             save_loc = filedialog.asksaveasfilename(title="Save File",defaultextension=".jpg",filetypes=[("JPG","*.jpg"),("PNG","*.png")])
             if save_loc:
